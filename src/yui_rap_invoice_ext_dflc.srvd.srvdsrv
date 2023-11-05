@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition'
+define service YUI_RAP_INVOICE_EXT_DFLC {
+  expose YC_RAP_INVOICE_EXT_DFLC as Invoice;
+}

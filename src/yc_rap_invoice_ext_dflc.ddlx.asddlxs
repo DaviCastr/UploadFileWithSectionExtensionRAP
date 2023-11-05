@@ -1,0 +1,37 @@
+@Metadata.layer: #CORE
+@UI: { headerInfo: {
+typeName: 'Pedido',
+typeNamePlural: 'Pedidos',
+title: { type: #STANDARD, value: 'Invoice' },
+         imageUrl: 'Attachment',
+         description: { type: #STANDARD, value: 'Invoice' } },
+         presentationVariant: [{
+         sortOrder: [{ by: 'Invoice', direction: #ASC }],
+         visualizations: [{type: #AS_LINEITEM}] }] }
+annotate view YC_RAP_INVOICE_EXT_DFLC
+    with 
+{
+   @UI.facet: [ { id:       'Invoicedet',
+                  purpose:  #STANDARD,
+                  type:     #IDENTIFICATION_REFERENCE,
+                  label:    'Detalhes do pedido',
+                  position: 10 }]
+
+  @UI: { lineItem:       [ { position: 10, importance: #HIGH , label: 'Número do pedido'} ] ,
+         identification: [ { position: 10 , label: 'Número do pedido' } ] }
+  Invoice;
+  
+  @UI: { lineItem:       [ { position: 20, importance: #HIGH , label: 'Comentários'} ] ,
+         identification: [ { position: 20 , label: 'Comentários' } ] }
+  Comments;
+  
+  @UI.hidden: true
+  Attachment;
+
+  @UI.hidden: true
+  MimeType;
+
+  @UI.hidden: true
+  Filename;
+    
+}
