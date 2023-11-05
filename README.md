@@ -1,8 +1,8 @@
 # Descrição
 Aplicativo com upload de arquivo com extensão de sessão
 
-Tomando como base o reporsitório [com anotações](https://github.com/DaviCastr/UploadFileWithAnnotationsRAP), foi criado esse reporsitório que permite o upload 
-de arquivos usando extensão no app através do vs code criando uma extensão de sessão(section), é possivel ver os detalhes na pasta **App**
+Tomando como base o reporsitório [UploadFileWithAnnotationsRAP](https://github.com/DaviCastr/UploadFileWithAnnotationsRAP) que é um protótipo usando apenas anotações, foi criado esse 
+reporsitório que permite o upload de arquivos usando extensão no app através do vs code criando uma extensão de sessão(section), em caso do ambiente não suportar o modelo via anotações levando em consideração o layout feito no reporsitório referenciado, é possivel ver os detalhes na pasta **App**
 
 # Telas do app
 
