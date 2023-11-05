@@ -1,0 +1,39 @@
+specVersion: "2.5"
+metadata:
+  name: dflc.apps.uploadfilesext
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+        backend:
+          - scp: true
+            path: /sap
+            url: https://d2dd45bb-32b7-45c7-b7d5-1328f3781129.abap.us10.hana.ondemand.com
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: sap-fe-mockserver
+      beforeMiddleware: csp
+      configuration:
+        mountPath: /
+        services:
+          - urlPath: /sap/opu/odata/sap/YUI_02_RAP_INVOIC_EXT_DFLC
+            generateMockData: true
+            metadataXmlPath: ./webapp/localService/metadata.xml
+            mockdataRootPath: ./webapp/localService/data
+          - urlPath: /sap/opu/odata/sap/YUI_02_RAP_INVOIC_EXT_DFLC/
+            metadataPath: ./webapp/localService/metadata.xml
+            mockdataPath: ./webapp/localService/mockdata
+            generateMockData: true
+        annotations: []

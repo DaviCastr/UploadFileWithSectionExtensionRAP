@@ -1,0 +1,44 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified"
+    xmlns:f="sap.ui.layout.form"
+	xmlns="sap.m">
+    <f:SimpleForm
+            id="FormfileDetails"
+            editable="true"
+			layout="ResponsiveGridLayout"
+			singleContainerFullSize="false"
+            title="Arquivo"
+            class="sapUiNoContentPadding" >
+        <f:content>
+            <Label
+			    text="Arquivo"
+			    labelFor="LKFileName"
+			    design="Bold"/> 
+            <Link 
+                id="LKFileName"
+                text="{= ${FileName} === undefined || ${FileName} === '' ? '_' : ${FileName}}"
+                enabled="{= ${FileName} === undefined || ${FileName} === '' ? false : true}" />
+            <HBox>
+                <u:FileUploader 
+			        id="FileUploadDetails"
+			        name="Carregar arquivo"
+                    icon="sap-icon://upload"
+			        tooltip="Carregar arquivo"
+                    maximumFilenameLength="128"
+			        style="Transparent"
+                    buttonOnly="true"
+                    iconOnly="true"
+                    iconHovered="true"
+                    visible="{ui>/editable}">
+                </u:FileUploader>
+                <Button 
+                    id="BtnDeleteFile"
+                    visible="{= ${ui>/editable} === true &amp;&amp; ${FileName} !== undefined  &amp;&amp; ${FileName} !== '' ? true : false }" 
+                    tooltip="Excluir arquivo"
+			        icon="sap-icon://sys-cancel"
+                    type="Transparent"/>
+            </HBox>
+        </f:content>
+    </f:SimpleForm>
+</core:FragmentDefinition>

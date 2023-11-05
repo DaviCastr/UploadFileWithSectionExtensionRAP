@@ -1,0 +1,200 @@
+{
+    "_version": "1.45.0",
+    "sap.app": {
+        "id": "dflc.apps.uploadfilesext",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.8.0",
+            "toolsId": "863bd927-9480-4dfb-81e2-1b3e86955db4"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/YUI_02_RAP_INVOIC_EXT_DFLC/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "YUI_02_RAP_INVOIC_EXT_DFLC_VAN",
+                        "annotation"
+                    ],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "YUI_02_RAP_INVOIC_EXT_DFLC_VAN": {
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='YUI_02_RAP_INVOIC_EXT_DFLC_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/YUI_02_RAP_INVOIC_EXT_DFLC_VAN.xml"
+                }
+            },
+            "annotation": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation.xml",
+                "settings": {
+                    "localUri": "annotations/annotation.xml"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "dflc-apps-uploadfilesext-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "UuploadFilesEXT",
+                    "action": "manage",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": ""
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.114.7",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.f": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.suite.ui.generic.template": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "dflc.apps.uploadfilesext.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "config": {},
+            "routes": [],
+            "targets": {}
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.viewExtensions": {
+                    "sap.suite.ui.generic.template.ObjectPage.view.Details": {
+                        "BeforeFacet|Invoice|Invoicedet": {
+                            "type": "XML",
+                            "className": "sap.ui.core.Fragment",
+                            "fragmentName": "dflc.apps.uploadfilesext.ext.fragment.FileDetails",
+                            "sap.ui.generic.app": {
+                                "title": "Arquivo"
+                            }
+                        }
+                    }
+                },
+                "sap.ui.controllerExtensions": {
+                    "sap.suite.ui.generic.template.ObjectPage.view.Details": {
+                        "controllerName": "dflc.apps.uploadfilesext.ext.controller.ObjectPageExt",
+                        "sap.ui.generic.app": {
+                            "Invoice": {
+                                "EntitySet": "Invoice",
+                                "Header": {
+                                    "Actions": {
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.ui.generic.app": {
+        "_version": "1.3.0",
+        "settings": {
+            "forceGlobalRefresh": false,
+            "objectPageHeaderType": "Dynamic",
+            "considerAnalyticalParameters": true,
+            "showDraftToggle": false
+        },
+        "pages": {
+            "ListReport|Invoice": {
+                "entitySet": "Invoice",
+                "component": {
+                    "name": "sap.suite.ui.generic.template.ListReport",
+                    "list": true,
+                    "settings": {
+                        "condensedTableLayout": true,
+                        "smartVariantManagement": true,
+                        "enableTableFilterInPageVariant": true,
+                        "filterSettings": {
+                            "dateSettings": {
+                                "useDateRange": true
+                            }
+                        }
+                    }
+                },
+                "pages": {
+                    "ObjectPage|Invoice": {
+                        "entitySet": "Invoice",
+                        "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                        "component": {
+                            "name": "sap.suite.ui.generic.template.ObjectPage"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}
